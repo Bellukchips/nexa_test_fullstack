@@ -69,7 +69,7 @@ export class TaskService {
         return { data: { message: 'Task deleted successfully' } };
     }
     async getAllTask(userId: string, filterDto: FilterDto) {
-        const { status, sortBy = "deadline", order = "asc" } = filterDto || {};
+        const { status, deadline } = filterDto || {};
 
         const whereClause: any = {
             user_id: userId,
@@ -78,17 +78,14 @@ export class TaskService {
         if (status) {
             whereClause.status = status;
         }
-
-        const validSortFields = ['deadline', 'status']
-        const sortField = validSortFields.includes(sortBy) ? sortBy : 'deadline';
-
-        const sortOrder = order.toLowerCase() === 'asc' ? 'asc' : 'desc';
+        
+        if(deadline) {
+            whereClause.deadline = deadline;
+        }   
 
         const tasks = await this.prisma.task.findMany({
             where: whereClause,
-            orderBy: {
-                [sortField]: sortOrder,
-            },
+
         });
 
         return tasks
