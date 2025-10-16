@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "6baa6ea8-e6fd-4672-bcd6-a7ebf18dd0f1",
+		"name": "nexa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4346681"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "tes",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "testaja",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Masukdulu12.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "tes",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "testaja",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Masukdulu12.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"data\": {\r\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNDUwMzdlYS0zZWU2LTQ1MzAtOTU2OS1hMmRhYmM1YjAyOTgiLCJ1c2VybmFtZSI6InRlc3RhamEiLCJpYXQiOjE3NjA1ODM4OTcsImV4cCI6MTc2MTE4ODY5N30.7-u1dNf-Wb8kkJMKaUHZ0YRw-yptYipSlRH6yXUbcDw\"\r\n    },\r\n    \"meta\": {\r\n        \"status\": \"success\",\r\n        \"code\": 201,\r\n        \"message\": \"success\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testaja",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Masukdulu12.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "testaja",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Masukdulu12.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"data\": {\r\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNDUwMzdlYS0zZWU2LTQ1MzAtOTU2OS1hMmRhYmM1YjAyOTgiLCJ1c2VybmFtZSI6InRlc3RhamEiLCJpYXQiOjE3NjA1ODM4OTcsImV4cCI6MTc2MTE4ODY5N30.7-u1dNf-Wb8kkJMKaUHZ0YRw-yptYipSlRH6yXUbcDw\"\r\n    },\r\n    \"meta\": {\r\n        \"status\": \"success\",\r\n        \"code\": 201,\r\n        \"message\": \"success\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "get task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2IwNDc4My0zODNjLTQwZTUtODUyNy1hNGE2NWFhMTRlMzMiLCJ1c2VybmFtZSI6InRlc3RhamEiLCJpYXQiOjE3NjA1ODgzODMsImV4cCI6MTc2MTE5MzE4M30.LfPsHAiZkSb0g9UdYJuu8EBivEEpjk4uxsAk-KNBYtM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/task/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get task",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/task/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task",
+								"all"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"data\": [],\r\n    \"meta\": {\r\n        \"status\": \"success\",\r\n        \"code\": 200,\r\n        \"message\": \"success\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "create task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2IwNDc4My0zODNjLTQwZTUtODUyNy1hNGE2NWFhMTRlMzMiLCJ1c2VybmFtZSI6InRlc3RhamEiLCJpYXQiOjE3NjA1ODgzODMsImV4cCI6MTc2MTE5MzE4M30.LfPsHAiZkSb0g9UdYJuu8EBivEEpjk4uxsAk-KNBYtM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Tes aja",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "bbb",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "TO_DO",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2025-10-20T09:00:00.000Z",
+							"type": "text"
+						},
+						{
+							"key": "created_by",
+							"value": "tes",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/task/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create task",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Tes aja",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "bbb",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "TO_DO",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-20T09:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "created_by",
+									"value": "tes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/task/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"data\": {\r\n        \"id\": \"34ca067a-aa61-4491-b615-25dccdb92594\",\r\n        \"title\": \"Tes aja\",\r\n        \"description\": \"bbb\",\r\n        \"status\": \"TO_DO\",\r\n        \"deadline\": \"2025-10-20T09:00:00.000Z\",\r\n        \"created_by\": \"tes\",\r\n        \"user_id\": \"47b04783-383c-40e5-8527-a4a65aa14e33\"\r\n    },\r\n    \"meta\": {\r\n        \"status\": \"success\",\r\n        \"code\": 201,\r\n        \"message\": \"success\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "update task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2IwNDc4My0zODNjLTQwZTUtODUyNy1hNGE2NWFhMTRlMzMiLCJ1c2VybmFtZSI6InRlc3RhamEiLCJpYXQiOjE3NjA1ODgzODMsImV4cCI6MTc2MTE5MzE4M30.LfPsHAiZkSb0g9UdYJuu8EBivEEpjk4uxsAk-KNBYtM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Tes aja",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "bbb",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2025-10-20T09:00:00.000Z",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "IN_PROGRESS",
+							"type": "text"
+						},
+						{
+							"key": "created_by",
+							"value": "tes",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/task/update/3e3d7dc1-89f8-4f4b-92fa-961778f0deaf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"update",
+						"3e3d7dc1-89f8-4f4b-92fa-961778f0deaf"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update task",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Tes aja",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "bbb",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-20T09:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "IN_PROGRESS",
+									"type": "text"
+								},
+								{
+									"key": "created_by",
+									"value": "tes",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/task/update/34ca067a-aa61-4491-b615-25dccdb92594",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"task",
+								"update",
+								"34ca067a-aa61-4491-b615-25dccdb92594"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"data\": {\r\n        \"id\": \"34ca067a-aa61-4491-b615-25dccdb92594\",\r\n        \"title\": \"Tes aja\",\r\n        \"description\": \"bbb\",\r\n        \"status\": \"IN_PROGRESS\",\r\n        \"deadline\": \"2025-10-20T09:00:00.000Z\",\r\n        \"created_by\": \"tes\",\r\n        \"user_id\": \"47b04783-383c-40e5-8527-a4a65aa14e33\"\r\n    },\r\n    \"meta\": {\r\n        \"status\": \"success\",\r\n        \"code\": 200,\r\n        \"message\": \"success\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2IwNDc4My0zODNjLTQwZTUtODUyNy1hNGE2NWFhMTRlMzMiLCJ1c2VybmFtZSI6InRlc3RhamEiLCJpYXQiOjE3NjA1ODgzODMsImV4cCI6MTc2MTE5MzE4M30.LfPsHAiZkSb0g9UdYJuu8EBivEEpjk4uxsAk-KNBYtM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/task/delete/3e3d7dc1-89f8-4f4b-92fa-961778f0deaf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"delete",
+						"3e3d7dc1-89f8-4f4b-92fa-961778f0deaf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
