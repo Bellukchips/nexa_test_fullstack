@@ -1,6 +1,6 @@
 "use client"
 import { logout } from "@/actions/auth";
-import { getAllTasks, updateTask } from "@/actions/task";
+import { createTask, deleteTask, getAllTasks, updateTask } from "@/actions/task";
 import PrivateRoute from "@/core/routes/PrivateRoute";
 import { Task } from "@/types/task";
 import { taskValidationSchema } from "@/validations/task";
@@ -27,14 +27,6 @@ export default function MyTasks() {
             created_by: ''
         }
     });
-    const { register, handleSubmit } = form;
-    const [filter, setFilter] = useState({ status: "", deadline: "" });
-
-    const onSubmit = async (values: z.infer<typeof taskValidationSchema>) => {
-        setLoading(true);
-
-    }
-
     const fetchTasks = async () => {
         setLoading(true);
         setError('');
@@ -51,8 +43,40 @@ export default function MyTasks() {
 
     useEffect(() => {
         fetchTasks();
-
     }, []);
+
+    const { register, handleSubmit } = form;
+    const [filter, setFilter] = useState({ status: "", deadline: "" });
+
+    const onSubmit = async (values: z.infer<typeof taskValidationSchema>) => {
+        setLoading(true);
+
+        try {
+            let result;
+            const payload = {
+                ...values,
+                deadline: new Date(values.deadline).toISOString(),
+            };
+            if (editingTask) {
+                result = await updateTask(editingTask.id, payload);
+            } else {
+                result = await createTask(payload);
+            }
+            if (result.success) {
+                fetchTasks();
+                closeModal();
+            } else {
+                setError(result.error || 'Failed to create task');
+            }
+        } catch (error) {
+            setError('Failed to create task');
+            console.error('Error creating task:', error);
+        } finally {
+            setLoading(false);
+        }
+
+    }
+
 
     const openCreateModal = () => {
         setEditingTask(null);
@@ -65,7 +89,7 @@ export default function MyTasks() {
         form.reset({
             title: task.title,
             description: task.description || "",
-            deadline: task.deadline,
+            deadline: task.deadline ? task.deadline.split("T")[0] : "",
             status: task.status,
             created_by: task.created_by
         });
@@ -101,7 +125,18 @@ export default function MyTasks() {
     };
 
     const handleDelete = (id: string) => {
-
+        if (window.confirm('Are you sure you want to delete this task?')) {
+            deleteTask(id).then((result) => {
+                if (result.success) {
+                    fetchTasks();
+                } else {
+                    setError(result.error || 'Failed to delete task');
+                }
+            }).catch((err) => {
+                setError('Failed to delete task');
+                console.error('Error deleting task:', err);
+            });
+        }
     }
     const getStatusColor = (status: Task['status']): string => {
         switch (status) {
@@ -146,6 +181,7 @@ export default function MyTasks() {
         setTasks(tasks);
         setLoading(false);
     };
+
     let content;
     if (loading) {
         content = (
@@ -192,6 +228,12 @@ export default function MyTasks() {
                         </div>
 
                         <div className="mb-4">
+                            <p className="text-sm text-gray-500">
+                                <span className="font-medium">Created By :</span> {task.created_by}
+                            </p>
+                        </div>
+
+                        <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Change Status:
                             </label>
@@ -202,9 +244,9 @@ export default function MyTasks() {
                                 }
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
-                                <option value="TO_DO">Pending</option>
+                                <option value="TO_DO">TO DO</option>
                                 <option value="IN_PROGRESS">In Progress</option>
-                                <option value="DONE">Completed</option>
+                                <option value="DONE">Done</option>
                             </select>
                         </div>
 
@@ -317,7 +359,6 @@ export default function MyTasks() {
                                 </h2>
 
                                 <form onSubmit={handleSubmit(onSubmit)}>
-                                    {/* Title */}
                                     <div className="mb-4">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             Title <span className="text-red-500">*</span>
@@ -325,14 +366,13 @@ export default function MyTasks() {
                                         <input
                                             type="text"
                                             {...register('title')}
-                                            required
+                                            id="title"
                                             minLength={3}
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                             placeholder="Enter task title"
                                         />
                                     </div>
 
-                                    {/* Description */}
                                     <div className="mb-4">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             Description
@@ -340,12 +380,12 @@ export default function MyTasks() {
                                         <textarea
                                             {...register('description')}
                                             rows={3}
+                                            id="description"
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                             placeholder="Enter task description"
                                         />
                                     </div>
 
-                                    {/* Due Date */}
                                     <div className="mb-4">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             Due Date <span className="text-red-500">*</span>
@@ -354,11 +394,11 @@ export default function MyTasks() {
                                             type="date"
                                             {...register('deadline')}
                                             required
+                                            id="deadline"
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         />
                                     </div>
 
-                                    {/* Status */}
                                     <div className="mb-6">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             Status <span className="text-red-500">*</span>
@@ -366,15 +406,28 @@ export default function MyTasks() {
                                         <select
                                             {...register('status')}
                                             required
+                                            id="status"
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
-                                            <option value="pending">TODO</option>
-                                            <option value="in-progress">In Progress</option>
-                                            <option value="completed">Done</option>
+                                            <option value="TO_DO">TODO</option>
+                                            <option value="IN_PROGRESS">In Progress</option>
+                                            <option value="DONE">Done</option>
                                         </select>
                                     </div>
+                                    <div className="mb-4">
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            Created By <span className="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            {...register('created_by')}
+                                            id="created_by"
+                                            minLength={3}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="Enter Created By"
+                                        />
+                                    </div>
 
-                                    {/* Buttons */}
                                     <div className="flex gap-3">
                                         <button
                                             type="button"
@@ -385,9 +438,13 @@ export default function MyTasks() {
                                         </button>
                                         <button
                                             type="submit"
-                                            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition duration-200"
+                                            disabled={loading}
+                                            className={`w-full py-2 rounded-lg font-medium text-white transition duration-200 ${loading
+                                                ? 'bg-gray-400 cursor-not-allowed'
+                                                : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
+                                                }`}
                                         >
-                                            {editingTask ? 'Update' : 'Create'}
+                                            {loading ? "Loading..." : "Save"}
                                         </button>
                                     </div>
                                 </form>
