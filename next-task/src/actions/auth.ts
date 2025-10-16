@@ -14,7 +14,9 @@ export async function login(data: z.infer<typeof loginValidationSchema>) {
         });
 
         const result = await response.json();
-        localStorage.setItem("token", result.token);
+        if (result.success === true && result.token) {
+            localStorage.setItem("token", result.token);
+        }
         return {
             success: result.success,
             message: result.message,
@@ -38,7 +40,9 @@ export async function registerUser(data: z.infer<typeof registerValidationSchema
         });
 
         const result = await response.json();
-        localStorage.setItem("token", result.token);
+        if (result.success === true && result.token) {
+            localStorage.setItem("token", result.token);
+        }
         return {
             success: result.success,
             message: result.message,

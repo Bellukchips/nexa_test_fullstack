@@ -40,8 +40,8 @@ export default function Login() {
 
         try {
             const result = await login(values);
-
-            if (result.success) {
+            console.log(result.success);
+            if (result.success === true) {
                 setMessage("Login Successful");
                 router.push("/mytasks");
             } else {
