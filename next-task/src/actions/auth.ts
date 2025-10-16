@@ -1,3 +1,4 @@
+import { removeToken } from "@/core/token";
 import { loginValidationSchema } from "@/validations/login";
 import { registerValidationSchema } from "@/validations/register";
 import z from "zod";
@@ -13,6 +14,7 @@ export async function login(data: z.infer<typeof loginValidationSchema>) {
         });
 
         const result = await response.json();
+        localStorage.setItem("token", result.token);
         return {
             success: result.success,
             message: result.message,
@@ -36,6 +38,7 @@ export async function registerUser(data: z.infer<typeof registerValidationSchema
         });
 
         const result = await response.json();
+        localStorage.setItem("token", result.token);
         return {
             success: result.success,
             message: result.message,
@@ -56,6 +59,7 @@ export async function logout() {
         });
 
         const result = await response.json();
+        removeToken();
         return {
             success: result.success,
             message: result.message,

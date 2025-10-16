@@ -10,7 +10,6 @@ export async function POST() {
             expires: new Date(0),
             path: "/",
         });
-
         return res;
     } catch (error) {
         console.error("Error logging out:", error);

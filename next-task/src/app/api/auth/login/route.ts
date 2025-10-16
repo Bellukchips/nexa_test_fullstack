@@ -13,6 +13,7 @@ export async function POST(req: Request) {
         const res = NextResponse.json(
             {
                 success: true,
+                token: token,
                 message: response.data.meta?.message ?? "Login successful",
             },
             { status: 200 }

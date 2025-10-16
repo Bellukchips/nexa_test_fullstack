@@ -12,11 +12,11 @@ export async function POST(req: Request) {
         const res = NextResponse.json(
             {
                 success: true,
+                token: token,
                 message: response.data.meta?.message ?? "Register successful",
             },
             { status: 200 }
         );
-
         res.cookies.set("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",

@@ -1,11 +1,12 @@
 "use client"
 
 import { login } from "@/actions/auth";
+import { getToken } from "@/core/token";
 import { loginValidationSchema } from "@/validations/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeClosed, LogInIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -23,7 +24,10 @@ export default function Login() {
         }
     });
 
-
+    useEffect(() => {
+        const token = getToken();
+        if (token) router.push("/mytasks");
+    });
     const {
         register,
         handleSubmit,
@@ -102,7 +106,7 @@ export default function Login() {
                             onClick={() => setShowPassword(!showPassword)}
                             className="absolute right-3 top-9 text-sm text-gray-600"
                         >
-                            {showPassword ?  <Eye /> :<EyeClosed />}
+                            {showPassword ? <Eye /> : <EyeClosed />}
                         </button>
                     </div>
                     <button

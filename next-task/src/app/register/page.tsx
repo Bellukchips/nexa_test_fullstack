@@ -118,7 +118,7 @@ export default function Register() {
                             : 'bg-blue-600 hover:bg-blue-700 active:scale-95'
                             }`}
                     >
-                        {isLoading ? "Loading..." : "Login"}
+                        {isLoading ? "Loading..." : "Register"}
                     </button>
                 </form>
 
