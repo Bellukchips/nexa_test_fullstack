@@ -104,7 +104,7 @@ npm install
 
 ### 3. Setup File `.env`
 
-Buat file `.env.local` di root proyek Next.js dan tambahkan konfigurasi berikut:
+Buat file `.env` di root proyek Next.js dan tambahkan konfigurasi berikut:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
