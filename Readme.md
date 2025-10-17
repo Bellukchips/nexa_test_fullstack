@@ -82,7 +82,7 @@ npx prisma migrate dev --name init
 npm run start:dev
 ```
 
-> Server default berjalan di: [http://localhost:3000](http://localhost:8000)
+> Server default berjalan di: [http://localhost:8000](http://localhost:8000)
 
 ---
 
@@ -118,7 +118,7 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
 npm run dev
 ```
 
-> Frontend default berjalan di: [http://localhost:3001](http://localhost:3001) (atau port lain yang tersedia)
+> Frontend default berjalan di: [http://localhost:3000](http://localhost:3000) (atau port lain yang tersedia)
 
 ---
 
