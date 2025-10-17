@@ -45,7 +45,7 @@ Proyek ini terdiri dari dua bagian utama:
 Buat database baru di PostgreSQL, misalnya:
 
 ```sql
-CREATE DATABASE task_db;
+CREATE DATABASE task_nexa;
 ```
 
 ### 2. Buka Proyek Backend
