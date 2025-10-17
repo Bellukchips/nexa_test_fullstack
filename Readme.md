@@ -82,7 +82,7 @@ npx prisma migrate dev --name init
 npm run start:dev
 ```
 
-> Server default berjalan di: [http://localhost:3000](http://localhost:3000)
+> Server default berjalan di: [http://localhost:3000](http://localhost:8000)
 
 ---
 
