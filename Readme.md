@@ -8,6 +8,33 @@ Proyek ini terdiri dari dua bagian utama:
 
 -   **Backend**: `node-task` (menggunakan Node.js, NestJS, Prisma, PostgreSQL)
 -   **Frontend**: `next-task` (menggunakan Next.js dan React)
+-   **Stuktur Database**
+
+          **Task Table:**
+
+               **- id**
+
+               **- title**
+
+               **- description**
+
+               **- deadline**
+
+               **- status**
+
+               **- created_by**
+
+               **- user_id**
+
+         **User:**
+
+               **- id**
+
+               **- name**
+
+               **- username**
+
+               **- password**
 
 ---
 
