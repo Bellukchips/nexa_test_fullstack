@@ -1,0 +1,15 @@
+services:
+  next_task:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: next_task
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - nexa_network
+
+networks:
+  nexa_network:
+    external: true      
